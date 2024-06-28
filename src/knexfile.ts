@@ -1,6 +1,10 @@
 import { Knex } from 'knex';
-const dotenv = require('dotenv');
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+// const dotenv = require('dotenv');
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 

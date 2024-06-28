@@ -142,3 +142,8 @@ dist
 .svelte-kit
 
 # End of https://www.toptal.com/developers/gitignore/api/node
+/test-results/
+/playwright-report/
+/tests-examples
+/blob-report/
+/playwright/.cache/
