@@ -1,6 +1,6 @@
 import { Knex } from 'knex';
 
-const seed = async (knex: Knex): Promise<void> => {
+export async function seed(knex: Knex): Promise<void> {
   await knex('users').insert([
     {
       id: 1,
@@ -24,6 +24,4 @@ const seed = async (knex: Knex): Promise<void> => {
       password: 'password483',
     },
   ]);
-};
-
-export default seed;
+}
