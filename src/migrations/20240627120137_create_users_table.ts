@@ -1,11 +1,11 @@
-// const Knex = require('knex');
+import { Knex } from 'knex';
 
 /**
  * @param {Knex} knex
  * @returns {Promise<void>}
  */
-exports.up = function (knex) {
-  return knex.schema.createTable('users', (table) => {
+export async function up(knex: Knex): Promise<void> {
+  return knex.schema.createTable('dev', (table) => {
     table.increments('id').primary();
     table.string('firstname').notNullable();
     table.string('lastname').notNullable();
@@ -13,12 +13,12 @@ exports.up = function (knex) {
     table.string('password').notNullable();
     table.timestamps(true, true);
   });
-};
+}
 
 /**
  * @param {Knex} knex
  * @returns {Promise<void>}
  */
-exports.down = function (knex) {
+export function down(knex: Knex) {
   return knex.schema.dropTableIfExists('users');
-};
+}

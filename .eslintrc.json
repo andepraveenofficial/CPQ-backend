@@ -16,12 +16,11 @@
     "es2021": true
   },
   "rules": {
-    "prettier/prettier": "error",
+  "prettier/prettier": ["error", {"endOfLine": "auto"} ],
     "semi": ["error", "always"],
     "quotes": ["error", "single"],
     "arrow-body-style": ["error", "always"],
     "@typescript-eslint/no-var-requires": "off",
-    "linebreak-style": ["error", "unix"],
     "import/extensions": [
       "error",
       "ignorePackages",
