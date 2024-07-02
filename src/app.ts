@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import path from 'path';
+import cors from 'cors';
 import v1Routes from './api/v1';
 
 // Load environment variables
@@ -12,6 +13,7 @@ const app = express();
 
 /* -----> Middlewares <----- */
 app.use(express.json()); // Handle JSON data
+app.use(cors()); // CORS
 
 /* -----> Routes <----- */
 // 00 Test
