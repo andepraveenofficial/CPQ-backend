@@ -35,9 +35,14 @@ const loginUser = async (req: Request, res: Response) => {
     if (isPasswordMatched === true) {
       const payload = {
         email,
-        password,
       };
-      const secretKey = password;
+      const secretKey = process.env.JWT_SECRET_KEY;
+
+      if (!secretKey) {
+        throw Error(
+          'Secret key is not defined. Please set the JWT_SECRET environment variable.',
+        );
+      }
       const options = {
         expiresIn: '1h', // Token expires in 1 hour
       };
