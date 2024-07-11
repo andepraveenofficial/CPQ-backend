@@ -15,3 +15,6 @@
 ### Seed Creation: 
 `npx knex seed:make initial_users --knexfile src/knexfile.ts`
 
+### Docker:
+* Create Image: `docker build -t <image_name> .`
+* Run yml file for containers: `docker compose up -d`
