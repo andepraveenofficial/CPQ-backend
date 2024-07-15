@@ -1,0 +1,25 @@
+### 01 Create a Product
+POST http://localhost:5000/api/v1/products
+Content-Type: application/json
+
+{
+    "name": "Product 13",
+    "internal_name": "Internal Product 1",
+    "description": "Description for product 1",
+    "charge_method": "recurring",
+    "currency": "USD",
+    "unit_price": 200,
+    "status": "active",
+    "last_activity": "2024-07-10T00:00:00Z"
+}
+
+### 02 Show All Products
+GET http://localhost:5000/api/v1/products
+
+### 03 Change Product Status
+PUT http://localhost:5000/api/v1/products/9
+Content-Type: application/json
+
+{
+    "status": "inactive"
+}

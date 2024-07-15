@@ -8,7 +8,7 @@
     "prepare": "husky install",
     "lint": "eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{ts,tsx}\"",
-    "build": "tsc",
+    "build": "tsc -w",
     "build:knexfile": "tsc src/knexfile.ts --outDir ./dist",
     "build:migrations": "tsc src/migrations/**/*.ts --outDir ./dist/migrations",
     "migrate": "knex migrate:latest --knexfile dist/knexfile.js",

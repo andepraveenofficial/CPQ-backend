@@ -18,7 +18,6 @@ const createUser = async (req: Request, res: Response) => {
       .status(201)
       .json({ message: 'User created successfully', userId: newUserIds[0] });
   } catch (error) {
-    console.error('Error creating user:', error);
     return res
       .status(500)
       .json({ message: 'An error occurred while creating the user' });
@@ -49,13 +48,13 @@ const loginUser = async (req: Request, res: Response) => {
 
       // Generate the Token
       const token = jwt.sign(payload, secretKey, options);
-      console.log(token);
+      // console.log(token);
       res.json({
         message: 'Login Success!',
         token,
       });
     } else {
-      console.log('Invalid Password');
+      // console.log('Invalid Password');
       res.status(400).send('Invalid Password');
     }
   } else {
