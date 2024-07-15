@@ -25,7 +25,7 @@ const changeProductStatus = async (
 ): Promise<IProduct | null> => {
   try {
     // Update product status in the database
-    await knex('products').where({ id: productId }).update({status});
+    await knex('products').where({ id: productId }).update({ status });
 
     // Fetch the updated product
     const updatedProduct = await knex('products')
