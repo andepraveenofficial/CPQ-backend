@@ -16,6 +16,6 @@ router.post('/', createProduct);
 router.get('/', getAllProducts);
 
 // Update product status
-router.put('/:productId', changeProductStatus);
+router.put('/:productUUID', changeProductStatus);
 
 export default router;

@@ -3,7 +3,7 @@ POST http://localhost:5000/api/v1/products
 Content-Type: application/json
 
 {
-    "name": "Product 13",
+    "name": "Product 2",
     "internal_name": "Internal Product 1",
     "description": "Description for product 1",
     "charge_method": "recurring",
@@ -17,7 +17,7 @@ Content-Type: application/json
 GET http://localhost:5000/api/v1/products
 
 ### 03 Change Product Status
-PUT http://localhost:5000/api/v1/products/9
+PUT http://localhost:5000/api/v1/products/85a12e52-dd57-4270-9e8b-e1f815a4560c
 Content-Type: application/json
 
 {

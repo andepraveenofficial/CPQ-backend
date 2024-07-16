@@ -20,16 +20,16 @@ const getAllProducts = async (): Promise<IProduct[]> => {
 };
 
 const changeProductStatus = async (
-  productId: number,
+  productUUID: string,
   status: string,
 ): Promise<IProduct | null> => {
   try {
     // Update product status in the database
-    await knex('products').where({ id: productId }).update({ status });
+    await knex('products').where({ uuid: productUUID }).update({ status });
 
     // Fetch the updated product
     const updatedProduct = await knex('products')
-      .where({ id: productId })
+      .where({ uuid: productUUID })
       .first();
 
     return updatedProduct || null; // Return the updated product object or null if not found
