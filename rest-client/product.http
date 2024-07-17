@@ -3,7 +3,7 @@ POST http://localhost:5000/api/v1/products
 Content-Type: application/json
 
 {
-    "name": "Product 2",
+    "name": "Product 3",
     "internal_name": "Internal Product 1",
     "description": "Description for product 1",
     "charge_method": "recurring",
