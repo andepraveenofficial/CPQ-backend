@@ -1,7 +1,7 @@
 import app from './app';
 import connectDatabase from './config/database';
 
-const port = process.env.PORT || 5000;
+const port: number = parseInt(process.env.PORT as string, 10);
 
 connectDatabase()
   .then(() => {

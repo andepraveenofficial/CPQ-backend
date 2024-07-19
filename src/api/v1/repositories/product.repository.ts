@@ -25,20 +25,15 @@ class ProductRepository {
     productUUID: string,
     status: string,
   ): Promise<IProduct | null> {
-    try {
-      // Update product status in the database
-      await knex('products').where({ uuid: productUUID }).update({ status });
+    // Update product status in the database
+    await knex('products').where({ uuid: productUUID }).update({ status });
 
-      // Fetch the updated product
-      const updatedProduct = await knex('products')
-        .where({ uuid: productUUID })
-        .first();
+    // Fetch the updated product
+    const updatedProduct = await knex('products')
+      .where({ uuid: productUUID })
+      .first();
 
-      return updatedProduct || null; // Return the updated product object or null if not found
-    } catch (error) {
-      console.error('Error updating product status:', error);
-      throw error; // Rethrow the error to be caught by the caller
-    }
+    return updatedProduct || null;
   }
 }
 

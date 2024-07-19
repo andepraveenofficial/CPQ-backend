@@ -2,26 +2,24 @@
 
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import UserModel from '../repositories/user.repository';
+import UserRepository from '../repositories/user.repository';
 import { IUser, IEmailAndPassword } from '../interfaces/user.interface';
 
 class UserService {
-  private UserModel = UserModel;
-
   async createUser(userDetails: IUser): Promise<number> {
-    const dbUser = await this.UserModel.findByEmail(userDetails.email);
+    const dbUser = await UserRepository.findByEmail(userDetails.email);
 
     if (dbUser) {
       throw new Error('User already exists');
     }
 
-    const newUserIds = await UserModel.createUser(userDetails);
+    const newUserIds = await UserRepository.createUser(userDetails);
     return newUserIds[0];
   }
 
   async loginUser(userDetails: IEmailAndPassword): Promise<string> {
     const { email, password } = userDetails;
-    const dbUser = await UserModel.findByEmail(email);
+    const dbUser = await UserRepository.findByEmail(email);
 
     if (!dbUser) {
       throw new Error('Invalid User');
