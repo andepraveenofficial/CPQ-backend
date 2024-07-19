@@ -1,0 +1,16 @@
+### 01 Create a Product
+POST http://localhost:5000/api/v1/customers
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW44QGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxMzg0MjEwLCJleHAiOjE3MjEzODc4MTB9.krzwstd4lNzZuisBpYln9ybCwsSDLlRa-jF3ZPkwntM
+
+{
+    "legal_company_name": "Company A",
+    "default_currency": "USD",
+    "address": "123 Street",
+    "unit_floor": "1",
+    "city": "City A",
+    "state": "State A",
+    "postal_code": "12345",
+    "country": "Country A"
+}
+

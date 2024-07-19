@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 /* -----> Import Routes <----- */
 import userRoutes from './routes/user.route';
 import productRoutes from './routes/product.route';
+import customerRoutes from './routes/customer.route';
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.get('/', (req: Request, res: Response) => {
 // User routes
 router.use('/users', userRoutes);
 router.use('/products', productRoutes);
+router.use('/customers', customerRoutes);
 
 export default router;
