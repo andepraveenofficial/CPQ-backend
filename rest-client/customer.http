@@ -4,7 +4,7 @@ Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW44QGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxMzg0MjEwLCJleHAiOjE3MjEzODc4MTB9.krzwstd4lNzZuisBpYln9ybCwsSDLlRa-jF3ZPkwntM
 
 {
-    "legal_company_name": "Company A",
+    "legal_company_name": "Company C",
     "default_currency": "USD",
     "address": "123 Street",
     "unit_floor": "1",
@@ -14,3 +14,7 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZ
     "country": "Country A"
 }
 
+### 02 Show All Customers
+GET http://localhost:5000/api/v1/customers
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW44QGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxMzg0MjEwLCJleHAiOjE3MjEzODc4MTB9.krzwstd4lNzZuisBpYln9ybCwsSDLlRa-jF3ZPkwntM
