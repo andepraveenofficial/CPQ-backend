@@ -2,3 +2,5 @@
 GET http://localhost:5000
 
 
+### API Docs
+GET http://localhost:5000/api-docs
