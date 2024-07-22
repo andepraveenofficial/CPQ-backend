@@ -9,6 +9,9 @@ RUN npm install
 COPY . .
 
 RUN npm rebuild bcrypt --build-from-source
+RUN npm run migrate:rollback --steps=2
+RUN npm run migrate
+RUN npm run seed
 
 EXPOSE 5000
 

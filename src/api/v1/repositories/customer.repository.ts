@@ -44,6 +44,11 @@ class CustomerRepository {
     // Delete customer from database
     await knex('customers').where({ id }).del();
   }
+
+  async findByCustomerId(id: string): Promise<ICustomer | null> {
+    const dbCustomer = await knex('customers').where({ id }).first();
+    return dbCustomer;
+  }
 }
 
 export default new CustomerRepository();

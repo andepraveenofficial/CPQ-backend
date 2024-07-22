@@ -1,6 +1,6 @@
-import { Knex } from 'knex';
+import type { Knex } from 'knex';
 
-export default async function seed(knex: Knex): Promise<void> {
+async function seed(knex: Knex): Promise<void> {
   // Deletes ALL existing entries
   await knex('users').del();
 
@@ -13,5 +13,15 @@ export default async function seed(knex: Knex): Promise<void> {
       email: 'email@gmail.com',
       password: 'ffdfr34',
     },
+    {
+      id: 2,
+      firstname: 'firstname1',
+      lastname: 'lastname1',
+      email: 'email@gmail1.com',
+      password: 'ffdfr344',
+    },
   ]);
 }
+
+const name = 'users';
+export { seed, name };

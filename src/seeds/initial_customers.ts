@@ -2,7 +2,7 @@
 import { v4 as uuidv4 } from 'uuid'; // Ensure you have uuid installed
 import type { Knex } from 'knex';
 
-export default async function seed(knex: Knex) {
+async function seed(knex: Knex) {
   // Deletes ALL existing entries
   await knex('customers').del();
 
@@ -32,3 +32,6 @@ export default async function seed(knex: Knex) {
     },
   ]);
 }
+
+const name = 'customers';
+export { seed, name };

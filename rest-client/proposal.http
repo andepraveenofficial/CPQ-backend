@@ -1,0 +1,11 @@
+### 01 Create a Proposal
+POST http://localhost:5000/api/v1/proposals
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW44QGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNjUxMTM2LCJleHAiOjE3MjE2NTQ3MzZ9.cHz4XuxkWKwexwL3ul0IVxf0Jf1fe2gZ3odCxY84zV4
+
+{
+    "proposal_uuid":"12345678",
+    "customer_id":"30c6853a-019c-4f36-af54-9b76b75165f9",
+    "term":"Monthly",
+    "status":"Draft"
+}
