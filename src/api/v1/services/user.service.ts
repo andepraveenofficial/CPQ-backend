@@ -4,44 +4,65 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import UserRepository from '../repositories/user.repository';
 import { IUser, IEmailAndPassword } from '../interfaces/user.interface';
+import ApiError from '../utils/ApiError';
 
 class UserService {
-  async createUser(userDetails: IUser): Promise<number> {
-    const dbUser = await UserRepository.findByEmail(userDetails.email);
+  async createUser(userDetails: IUser): Promise<number[]> {
+    try {
+      const existingUser = await UserRepository.findByEmail(userDetails.email);
 
-    if (dbUser) {
-      throw new Error('User already exists');
+      if (existingUser) {
+        const message = 'User Already Exists';
+        const statusCode = 400;
+        throw new ApiError(statusCode, message);
+      }
+
+      const newUserIds = await UserRepository.createUser(userDetails);
+      return newUserIds;
+    } catch (error) {
+      console.error('Error because User Already Existed');
+      throw error;
     }
-
-    const newUserIds = await UserRepository.createUser(userDetails);
-    return newUserIds[0];
   }
 
   async loginUser(userDetails: IEmailAndPassword): Promise<string> {
-    const { email, password } = userDetails;
-    const dbUser = await UserRepository.findByEmail(email);
+    try {
+      const { email, password } = userDetails;
+      const existingUser = await UserRepository.findByEmail(email);
 
-    if (!dbUser) {
-      throw new Error('Invalid User');
-    }
+      if (!existingUser) {
+        const message = 'Invalid User';
+        const statusCode = 400;
+        throw new ApiError(statusCode, message);
+      }
 
-    const isPasswordMatched = await bcrypt.compare(password, dbUser.password);
-
-    if (!isPasswordMatched) {
-      throw new Error('Invalid Password');
-    }
-
-    const payload = { email };
-    const secretKey = process.env.JWT_SECRET_KEY;
-
-    if (!secretKey) {
-      throw new Error(
-        'Secret key is not defined. Please set the JWT_SECRET environment variable.',
+      const isPasswordMatched = await bcrypt.compare(
+        password,
+        existingUser.password,
       );
-    }
 
-    const options = { expiresIn: '1h' };
-    return jwt.sign(payload, secretKey, options);
+      if (!isPasswordMatched) {
+        const message = 'Invalid Password';
+        const statusCode = 400;
+        throw new ApiError(statusCode, message);
+      }
+
+      const payload = { email };
+      const secretKey = process.env.JWT_SECRET_KEY;
+
+      if (!secretKey) {
+        const message =
+          'Secret key is not defined. Please set the JWT_SECRET environment variable.';
+        const statusCode = 400;
+        throw new ApiError(statusCode, message);
+      }
+
+      const options = { expiresIn: '1d' };
+      return jwt.sign(payload, secretKey, options);
+    } catch (error) {
+      console.error('Error in Creating a User');
+      throw error;
+    }
   }
 }
 
