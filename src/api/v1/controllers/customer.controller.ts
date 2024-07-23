@@ -3,46 +3,34 @@ import { Request, Response } from 'express';
 import CustomerService from '../services/customer.service';
 import { ICustomer } from '../interfaces/customer.interface';
 import authenticateToken from '../middlewares/auth.middleware';
+import ApiResponseHandler from '../utils/ApiResponseHandler';
 
 class CustomerController {
   async createCustomer(req: Request, res: Response): Promise<void> {
-    try {
-      // Apply authenticateToken middleware here
-      await authenticateToken(req, res, async () => {
+    // Apply authenticateToken middleware here
+    await authenticateToken(req, res, async () => {
+      try {
         const customerDetails: ICustomer = req.body;
-        const customerId =
-          await CustomerService.createCustomer(customerDetails);
-        res.status(201).json({
-          message: 'Customer created successfully',
-          customerId,
-        });
-      });
-    } catch (error) {
-      if (
-        error instanceof Error &&
-        error.message === 'Customer already exists'
-      ) {
-        res.status(400).json({ message: error.message });
-      } else {
-        res
-          .status(500)
-          .json({ message: 'An error occurred while creating the customer' });
+        const data = await CustomerService.createCustomer(customerDetails);
+        const message = 'Customer Created Successfully';
+        ApiResponseHandler.handleResponse(res, data, message);
+      } catch (error) {
+        ApiResponseHandler.handleError(res, error);
       }
-    }
+    });
   }
 
   async getAllCustomers(req: Request, res: Response): Promise<void> {
-    try {
-      // Apply authenticateToken middleware here
-      await authenticateToken(req, res, async () => {
-        const customers = await CustomerService.getAllCustomers();
-        res.status(200).json(customers);
-      });
-    } catch (error) {
-      res
-        .status(500)
-        .json({ message: 'An error occurred while retrieving customers' });
-    }
+    // Apply authenticateToken middleware here
+    await authenticateToken(req, res, async () => {
+      try {
+        const data = await CustomerService.getAllCustomers();
+        const message = 'All Customers Successfully Fetched';
+        ApiResponseHandler.handleResponse(res, data, message);
+      } catch (error) {
+        ApiResponseHandler.handleError(res, error);
+      }
+    });
   }
 }
 

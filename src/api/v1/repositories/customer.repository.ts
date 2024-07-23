@@ -13,7 +13,7 @@ class CustomerRepository {
     return dbCustomer;
   }
 
-  async createCustomer(customerDetails: ICustomer): Promise<string[]> {
+  async createCustomer(customerDetails: ICustomer): Promise<number[]> {
     // Insert new customer into database
     const newCustomerIds = await knex('customers')
       .insert(customerDetails)

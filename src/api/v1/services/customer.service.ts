@@ -3,30 +3,43 @@
 import { v4 as uuidv4 } from 'uuid';
 import CustomerRepository from '../repositories/customer.repository';
 import { ICustomer } from '../interfaces/customer.interface';
+import ApiError from '../utils/ApiError';
 
 class CustomerService {
-  async createCustomer(customerDetails: ICustomer): Promise<string> {
-    const existingCustomer = await CustomerRepository.findByCompanyName(
-      customerDetails.legal_company_name,
-    );
+  async createCustomer(customerDetails: ICustomer): Promise<number[]> {
+    try {
+      const existingCustomer = await CustomerRepository.findByCompanyName(
+        customerDetails.legal_company_name,
+      );
 
-    if (existingCustomer) {
-      throw new Error('Customer already exists');
+      if (existingCustomer) {
+        const message = 'Customer Already Exists';
+        const statusCode = 400;
+        throw new ApiError(statusCode, message);
+      }
+
+      const customerWithUUID = {
+        ...customerDetails,
+        id: uuidv4(),
+      };
+
+      const newCustomerIds =
+        await CustomerRepository.createCustomer(customerWithUUID);
+      return newCustomerIds;
+    } catch (error) {
+      console.error('Error because Customer Already Existed');
+      throw error;
     }
-
-    const customerWithUUID = {
-      ...customerDetails,
-      id: uuidv4(),
-    };
-
-    const newCustomerIds =
-      await CustomerRepository.createCustomer(customerWithUUID);
-    return newCustomerIds[0];
   }
 
   async getAllCustomers(): Promise<ICustomer[]> {
-    const customers = await CustomerRepository.getAllCustomers();
-    return customers;
+    try {
+      const customers = await CustomerRepository.getAllCustomers();
+      return customers;
+    } catch (error) {
+      console.error('Error in Get All Customers');
+      throw error;
+    }
   }
 }
 
