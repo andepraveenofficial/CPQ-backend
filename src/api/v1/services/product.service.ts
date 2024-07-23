@@ -3,46 +3,61 @@
 import { v4 as uuidv4 } from 'uuid';
 import ProductRepository from '../repositories/product.repository';
 import { IProduct } from '../interfaces/product.interface';
+import ApiError from '../utils/ApiError';
 
 class ProductService {
-  async createProduct(productDetails: IProduct): Promise<number> {
-    const existingProduct = await ProductRepository.findByProductName(
-      productDetails.name,
-    );
+  async createProduct(productDetails: IProduct): Promise<number[]> {
+    try {
+      const existingProduct = await ProductRepository.findByProductName(
+        productDetails.name,
+      );
 
-    if (existingProduct) {
-      throw new Error('Product already exists');
+      if (existingProduct) {
+        const message = 'Product Already Exists';
+        const statusCode = 400;
+        throw new ApiError(statusCode, message);
+      }
+
+      const productWithUUID = {
+        ...productDetails,
+        id: uuidv4(),
+      };
+
+      const newProductIds =
+        await ProductRepository.createProduct(productWithUUID);
+      return newProductIds;
+    } catch (error) {
+      console.error('Error because Product Already Existed');
+      throw error;
     }
-
-    const productWithUUID = {
-      ...productDetails,
-      uuid: uuidv4(),
-    };
-
-    const newProductIds =
-      await ProductRepository.createProduct(productWithUUID);
-    return newProductIds[0];
   }
 
   async getAllProducts(): Promise<IProduct[]> {
-    const products = await ProductRepository.getAllProducts();
-    return products;
+    try {
+      const products = await ProductRepository.getAllProducts();
+      return products;
+    } catch (error) {
+      console.error('Error in Get All Products');
+      throw error;
+    }
   }
 
-  async changeProductStatus(
-    productUUID: string,
-    status: string,
-  ): Promise<IProduct> {
-    const updatedProduct = await ProductRepository.changeProductStatus(
-      productUUID,
-      status,
-    );
+  async changeProductStatus(id: string, status: string): Promise<IProduct> {
+    try {
+      const updatedProduct = await ProductRepository.changeProductStatus(
+        id,
+        status,
+      );
 
-    if (!updatedProduct) {
-      throw new Error('Product not found');
+      if (!updatedProduct) {
+        throw new ApiError(400, 'Product not found');
+      }
+
+      return updatedProduct;
+    } catch (error) {
+      console.error('Error at Change Product Status', error);
+      throw error;
     }
-
-    return updatedProduct;
   }
 }
 

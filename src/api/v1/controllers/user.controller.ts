@@ -13,10 +13,11 @@ class UserController {
     } catch (error) {
       if (error instanceof Error && error.message === 'User already exists') {
         res.status(400).json({ message: error.message });
+      } else {
+        res
+          .status(500)
+          .json({ message: 'An error occurred while creating the user' });
       }
-      res
-        .status(500)
-        .json({ message: 'An error occurred while creating the user' });
     }
   }
 
@@ -34,7 +35,6 @@ class UserController {
           res.status(400).json({ message: error.message });
         }
       }
-      res.status(500).json({ message: 'An error occurred during login' });
     }
   }
 }
