@@ -3,30 +3,21 @@
 import { Request, Response } from 'express';
 import authenticateToken from '../middlewares/auth.middleware';
 import proposalService from '../services/proposal.service';
+import ApiResponseHandler from '../utils/ApiResponseHandler';
 
 class ProposalController {
   async createProposal(req: Request, res: Response): Promise<void> {
-    try {
-      // Apply authenticateToken middleware here
-      await authenticateToken(req, res, async () => {
+    // Apply authenticateToken middleware here
+    await authenticateToken(req, res, async () => {
+      try {
         const proposalDetails = req.body;
-        const proposalId =
-          await proposalService.createProposal(proposalDetails);
-        res
-          .status(201)
-          .json({ message: 'Proposal created successfully', proposalId });
-      });
-    } catch (error) {
-      if (
-        error instanceof Error &&
-        error.message === 'Proposal already exists'
-      ) {
-        res.send(400).json({ message: error.message });
+        const data = await proposalService.createProposal(proposalDetails);
+        const message = 'Proposal created successfully';
+        ApiResponseHandler.handleResponse(res, data, message);
+      } catch (error) {
+        ApiResponseHandler.handleError(res, error);
       }
-      res
-        .send(500)
-        .json({ message: 'An error occurred while creating the Proposal' });
-    }
+    });
   }
 }
 
