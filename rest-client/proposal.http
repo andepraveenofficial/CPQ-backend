@@ -1,12 +1,18 @@
 ### 01 Create a Proposal
 POST http://localhost:5000/api/v1/proposals
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW44QGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzU0NTM4LCJleHAiOjE3MjE3NTgxMzh9.tfZslSXD9OzFSQ39aHWVFZcp-wCpXdQc4me41usy_XM
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW4xMUBleGFtcGxlLmNvbSIsImlhdCI6MTcyMTgwMzc0NSwiZXhwIjoxNzIxODkwMTQ1fQ.oISQDXbFZu6GopWWoC8h3lpqz3QLQLTsu9h9LzaSrz0
 
 {
     "customer_id":"30c6853a-019c-4f36-af54-9b76b75165f9",
     "term":"Monthly",
     "status":"Draft"
 }
+
+### 02 Show All Proposals
+GET http://localhost:5000/api/v1/proposals
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW4xMUBleGFtcGxlLmNvbSIsImlhdCI6MTcyMTgwMzc0NSwiZXhwIjoxNzIxODkwMTQ1fQ.oISQDXbFZu6GopWWoC8h3lpqz3QLQLTsu9h9LzaSrz0
+
 
     

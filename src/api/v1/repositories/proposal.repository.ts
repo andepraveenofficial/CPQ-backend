@@ -9,6 +9,12 @@ class ProposalRepository {
     const newProposalIds = await knex('proposals').insert(proposalDetails);
     return newProposalIds;
   }
+
+  async getAllProposals(): Promise<IProposal[]> {
+    // Retrieve all proposals from database
+    const proposals = await knex('proposals').select('*');
+    return proposals;
+  }
 }
 
 export default new ProposalRepository();

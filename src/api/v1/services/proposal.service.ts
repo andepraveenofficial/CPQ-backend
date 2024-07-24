@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ICustomer } from '../interfaces/customer.interface';
 import { IProposal } from '../interfaces/proposal.interface';
 import CustomerRepository from '../repositories/customer.repository';
-import proposalRepository from '../repositories/proposal.repository';
+import ProposalRepository from '../repositories/proposal.repository';
 import ApiError from '../utils/ApiError';
 
 class ProposalService {
@@ -29,10 +29,20 @@ class ProposalService {
         status: proposalDetails.status,
       };
 
-      const proposalId = await proposalRepository.createProposal(proposal);
+      const proposalId = await ProposalRepository.createProposal(proposal);
       return proposalId;
     } catch (error) {
       console.error('Error because Product Customer Not Existed');
+      throw error;
+    }
+  }
+
+  async getAllProposals(): Promise<IProposal[]> {
+    try {
+      const proposals = await ProposalRepository.getAllProposals();
+      return proposals;
+    } catch (error) {
+      console.error('Error in Get All Products');
       throw error;
     }
   }
