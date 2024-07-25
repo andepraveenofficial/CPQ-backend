@@ -21,11 +21,17 @@
 
 ### rollback the migration file
 
+- `npm run migrate:rollback`
+
 ### Docker:
 
 - Create Image: `docker build -t <image_name> .`
+  - ` docker build -t cpq-backend:0.0.4 .`
 - Create and Run the Container: `docker run --name <container_name> -p <host_port>:<container_port> <image_name>`
 
-  - `docker run --name cpq-backend-3 -p 5000:5000 cpq-backend:0.0.3`
+  - `docker run --name cpq-backend-4 -p 5000:5000 cpq-backend:0.0.4`
 
 - Run yml file for containers: `docker compose up -d`
+
+### Generate API Documentation
+* `npm run swagger`

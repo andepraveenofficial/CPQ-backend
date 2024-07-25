@@ -21,6 +21,7 @@ class ProductService {
       const productWithUUID = {
         ...productDetails,
         id: uuidv4(),
+        last_activity: new Date().toISOString().split('T')[0],
       };
 
       const newProductIds =
@@ -44,9 +45,11 @@ class ProductService {
 
   async changeProductStatus(id: string, status: string): Promise<IProduct> {
     try {
+      const lastActivity = new Date().toISOString().split('T')[0];
       const updatedProduct = await ProductRepository.changeProductStatus(
         id,
         status,
+        lastActivity,
       );
 
       if (!updatedProduct) {

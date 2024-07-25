@@ -2,7 +2,7 @@
 ### 01 Create a Product
 POST http://localhost:5000/api/v1/products
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW44QGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzU0NTM4LCJleHAiOjE3MjE3NTgxMzh9.tfZslSXD9OzFSQ39aHWVFZcp-wCpXdQc4me41usy_XM
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW4xMUBleGFtcGxlLmNvbSIsImlhdCI6MTcyMTg5MDE1MCwiZXhwIjoxNzIxOTc2NTUwfQ.-rXvKTb1AYh7y4Kykpepq7JDFlw_SArUtVEMqmsunk0
 
 {
     "name": "Product 15",
@@ -11,21 +11,20 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZ
     "charge_method": "recurring",
     "currency": "USD",
     "unit_price": 200,
-    "status": "active",
-    "last_activity": "2024-07-10T00:00:00Z"
+    "status": "active"
 }
 
 
 ### 02 Show All Products
 GET http://localhost:5000/api/v1/products
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW44QGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzU0NTM4LCJleHAiOjE3MjE3NTgxMzh9.tfZslSXD9OzFSQ39aHWVFZcp-wCpXdQc4me41usy_XM
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW4xMUBleGFtcGxlLmNvbSIsImlhdCI6MTcyMTg5MDE1MCwiZXhwIjoxNzIxOTc2NTUwfQ.-rXvKTb1AYh7y4Kykpepq7JDFlw_SArUtVEMqmsunk0
 
 
 ### 03 Change Product Status
-PUT http://localhost:5000/api/v1/products/528695e7-29f8-431c-a13a-f85cebe0b379
+PUT http://localhost:5000/api/v1/products/086d5f76-85fd-4bc1-b584-93764f519cdc
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW44QGV4YW1wbGUuY29tIiwiaWF0IjoxNzIxNzU0NTM4LCJleHAiOjE3MjE3NTgxMzh9.tfZslSXD9OzFSQ39aHWVFZcp-wCpXdQc4me41usy_XM
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYXZlZW4xMUBleGFtcGxlLmNvbSIsImlhdCI6MTcyMTg5MDE1MCwiZXhwIjoxNzIxOTc2NTUwfQ.-rXvKTb1AYh7y4Kykpepq7JDFlw_SArUtVEMqmsunk0
 
 
 {

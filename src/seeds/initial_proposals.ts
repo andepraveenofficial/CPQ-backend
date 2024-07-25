@@ -15,6 +15,20 @@ async function seed(knex: Knex): Promise<void> {
       term: 'monthly',
       status: 'Draft',
     },
+    {
+      id: uuidv4(),
+      customer_id: '123',
+      customer_name: 'Mahesh',
+      term: 'monthly',
+      status: 'Draft',
+    },
+    {
+      id: uuidv4(),
+      customer_id: '123',
+      customer_name: 'Prabhas',
+      term: 'monthly',
+      status: 'Draft',
+    },
   ]);
 }
 

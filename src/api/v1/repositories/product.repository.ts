@@ -24,9 +24,12 @@ class ProductRepository {
   async changeProductStatus(
     id: string,
     status: string,
+    lastActivity: string,
   ): Promise<IProduct | null> {
     // Update product status in the database
-    await knex('products').where({ id }).update({ status });
+    await knex('products')
+      .where({ id })
+      .update({ status, last_activity: lastActivity });
 
     // Fetch the updated product
     const updatedProduct = await knex('products').where({ id }).first();
